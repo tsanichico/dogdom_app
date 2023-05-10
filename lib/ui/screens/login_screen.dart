@@ -36,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: TextFormField(
                         initialValue: '   +62',
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColor.grey5,
@@ -91,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         child: Text(
                           'Password to Login',
-                          style: AppTypography.Body3.copyWith(
+                          style: AppTypography.Body5.copyWith(
                             color: AppColor.white,
                           ),
                         ),

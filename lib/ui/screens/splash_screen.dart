@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/images/logo.png',
