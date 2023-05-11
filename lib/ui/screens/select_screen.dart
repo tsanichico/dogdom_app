@@ -1,16 +1,62 @@
+import 'package:dogdom_app/models/features_item.dart';
 import 'package:dogdom_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 class SelectScreen extends StatelessWidget {
+  // List<FeaturesItem> _items = [
+  //   FeaturesItem(
+  //     name: 'Ranking',
+  //     imageUrl: 'assets/illustrations/ranking.png',
+  //   ),
+  // ];
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColor.white,
-      body: SingleChildScrollView(
-        child: Column(
-          
+      body: SafeArea(
+        bottom: false,
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 22,
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: 18,
+                right: 18,
+              ),
+              child: Container(
+                height: 190,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        'assets/images/carousel1.png',
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        'assets/images/carousel2.png',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+///// EF : 1.2 jt - 2.5 / perbulan
+///tergantung berapa bulan durasi nya
+///
+///

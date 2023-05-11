@@ -1,3 +1,4 @@
+import 'package:dogdom_app/models/features_item.dart';
 import 'package:dogdom_app/ui/screens/discovery_screen.dart';
 import 'package:dogdom_app/ui/screens/select_screen.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class AppBarExample extends StatelessWidget {
           },
           scrolledUnderElevation: 4.0,
           backgroundColor: AppColor.white,
-          bottom: TabBar(
+          bottom: const TabBar(
             indicatorColor: AppColor.primary,
             isScrollable: true,
             tabs: [
@@ -65,6 +66,7 @@ class AppBarExample extends StatelessWidget {
                 child: Text(
                   'Select',
                 ),
+
               ),
               Tab(
                 child: Text(
@@ -74,38 +76,53 @@ class AppBarExample extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(22),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Send the sample',
-                  hintStyle: AppTypography.Body3,
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide.none,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(22),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Send the sample',
+                    hintStyle: AppTypography.Body3,
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: AppColor.grey5,
+                    contentPadding: EdgeInsets.symmetric(vertical: 15),
                   ),
-                  filled: true,
-                  fillColor: AppColor.grey5,
-                  contentPadding: EdgeInsets.symmetric(vertical: 15),
                 ),
               ),
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  Center(
-                    child: Text('Select'),
-                  ),
-                  Center(
-                    child: Text('Discovery'),
-                  ),
-                ],
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 22,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FeaturesItem(
+                      name: 'Ranking',
+                      imageUrl: 'assets/illustrations/ranking.png',
+                    ),
+                    FeaturesItem(
+                      name: 'Discuss',
+                      imageUrl: 'assets/illustrations/discuss.png',
+                    ),
+                    FeaturesItem(
+                      name: 'Surrounding',
+                      imageUrl: 'assets/illustrations/cart.png',
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Expanded(
+                child: SelectScreen(),
+              ),
+            ],
+          ),
         ),
       ),
     );
