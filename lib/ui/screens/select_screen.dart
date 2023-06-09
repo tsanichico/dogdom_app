@@ -18,6 +18,28 @@ class SelectScreen extends StatelessWidget {
         bottom: false,
         child: ListView(
           children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 22,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FeaturesItem(
+                    name: 'Ranking',
+                    imageUrl: 'assets/illustrations/ranking.png',
+                  ),
+                  FeaturesItem(
+                    name: 'Discuss',
+                    imageUrl: 'assets/illustrations/discuss.png',
+                  ),
+                  FeaturesItem(
+                    name: 'Surrounding',
+                    imageUrl: 'assets/illustrations/cart.png',
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 22,
             ),
@@ -50,6 +72,30 @@ class SelectScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.album),
+                    title: Text('Judul card'),
+                    subtitle: Text('Deskripsi card'),
+                  ),
+                  ButtonBar(
+                    children: <Widget>[
+                      OutlinedButton(
+                        child: const Text('Tombol 1'),
+                        onPressed: () {/* Action tombol 1 */},
+                      ),
+                      OutlinedButton(
+                        child: const Text('Tombol 2'),
+                        onPressed: () {/* Action tombol 2 */},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

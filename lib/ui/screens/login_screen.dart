@@ -1,3 +1,4 @@
+import 'package:dogdom_app/ui/screens/bottom_navbar.dart';
 import 'package:dogdom_app/ui/screens/home_screen.dart';
 import 'package:dogdom_app/utils/app_color.dart';
 import 'package:dogdom_app/utils/app_typography.dart';
@@ -67,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
+                                builder: (context) => BottomNavbar(),
                               ),
                             );
                           },

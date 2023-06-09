@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:dogdom_app/utils/app_color.dart';
 import 'package:dogdom_app/utils/app_typography.dart';
 
-class HomeScreen extends StatefulWidget {
+class AppbarHomeScreen extends StatefulWidget {
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<AppbarHomeScreen> createState() => _AppbarHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AppbarHomeScreenState extends State<AppbarHomeScreen> {
   int _selectedIndex = 1;
   late List<Map<String, Object>> _pages;
 
@@ -31,98 +31,83 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          colorSchemeSeed: const Color(0xffD43131), useMaterial3: true),
-      home: const AppBarExample(),
-    );
-  }
-}
-
-class AppBarExample extends StatelessWidget {
-  const AppBarExample({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    const int tabsCount = 2;
-
-    return DefaultTabController(
-      initialIndex: 1,
-      length: tabsCount,
-      child: Scaffold(
-        backgroundColor: AppColor.white,
-        appBar: AppBar(
-          toolbarHeight: 10,
-          notificationPredicate: (ScrollNotification notification) {
-            return notification.depth == 1;
-          },
-          scrolledUnderElevation: 4.0,
-          backgroundColor: AppColor.white,
-          bottom: const TabBar(
-            indicatorColor: AppColor.primary,
-            isScrollable: true,
-            tabs: [
-              Tab(
-                child: Text(
-                  'Select',
-                ),
-
-              ),
-              Tab(
-                child: Text(
-                  'Discovery',
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(22),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Send the sample',
-                    hintStyle: AppTypography.Body3,
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide.none,
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+      backgroundColor: AppColor.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 12,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                  child: Container(
+                    width: screenWidth / 2,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: _selectedIndex == 0
+                            ? BorderSide(color: AppColor.primary, width: 2.0)
+                            : BorderSide(color: Colors.transparent),
+                      ),
                     ),
-                    filled: true,
-                    fillColor: AppColor.grey5,
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
+                    child: Center(
+                      child: Text(
+                        'Select',
+                        style: AppTypography.Body2.copyWith(
+                          color: _selectedIndex == 0
+                              ? AppColor.primary
+                              : AppColor.grey4,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 22,
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                  child: Container(
+                    width: screenWidth / 2,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: _selectedIndex == 1
+                            ? BorderSide(color: AppColor.primary, width: 2.0)
+                            : BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Discovery',
+                        style: AppTypography.Body2.copyWith(
+                          color: _selectedIndex == 1
+                              ? AppColor.primary
+                              : AppColor.grey4,
+                        ),
+                        
+                      ),
+                    ),
+                    
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FeaturesItem(
-                      name: 'Ranking',
-                      imageUrl: 'assets/illustrations/ranking.png',
-                    ),
-                    FeaturesItem(
-                      name: 'Discuss',
-                      imageUrl: 'assets/illustrations/discuss.png',
-                    ),
-                    FeaturesItem(
-                      name: 'Surrounding',
-                      imageUrl: 'assets/illustrations/cart.png',
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: SelectScreen(),
-              ),
-            ],
-          ),
+              ],
+            ),
+            SizedBox(height: 20,),
+            Expanded(
+              child: _pages[_selectedIndex]['page'] as Widget,
+            ),
+          ],
         ),
       ),
     );
